@@ -1,5 +1,5 @@
-import { loop } from "three/examples/jsm/nodes/Nodes.js";
 import k from "./kaplayCtx";
+import mainMenu from "./scenes/mainMenu";
 
 // i start loading sprites. The fact that i'm using Vite as scaffold tool, i don't need to specify the folder public in my src
 k.loadSprite("chemical-bg", "graphics/chemical-bg.png");
@@ -39,3 +39,9 @@ k.loadSound("hurt", "sounds/Hurt.wav");
 k.loadSound("hyperRing", "sounds/HyperRing.wav");
 k.loadSound("jump", "sounds/Jump.wav");
 k.loadSound("ring", "sounds/Ring.wav");
+
+k.scene("main-menu", mainMenu);
+k.scene("game", () => {});
+k.scene("gameover", () => {});
+
+k.go("main-menu");
