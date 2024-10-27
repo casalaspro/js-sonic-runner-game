@@ -9,9 +9,21 @@ export default function mainMenu(){
   // we have the possibility to use components ready made from kaplay
   const bgPieces = [
     // this is a game object
-    k.add([k.sprite("chemical-bg"), k.pos(0, 0), k.scale(2), k.opacity(0.8)]),
+    k.add([
+      k.sprite("chemical-bg"),
+      k.pos(0, 0), k.scale(2),
+      k.opacity(0.8),
+      // it's used to see in debug mode the blue borders for splines
+      // k.area()
+    ]),
     // i placed the x position of the second image *2 because the two images are scaled to the double and the second image has to follow the first image to create the illusion of infinite scrolling
-    k.add([k.sprite("chemical-bg"), k.pos(bgPieceWidth * 2, 0), k.scale(2), k.opacity(0.8)]),
+    k.add([
+      k.sprite("chemical-bg"),
+      k.pos(bgPieceWidth * 2, 0),
+      k.scale(2),
+      k.opacity(0.8),
+      // k.area()
+    ]),
   ];
 
   const platformWidth = 1280;
@@ -31,6 +43,18 @@ export default function mainMenu(){
      // each update .move() function moves the game object
      bgPieces[0].move(-100, 0);
      bgPieces[1].moveTo(bgPieces[0].pos.x + bgPieceWidth * 2, 0);
+
+    //----------------- platforms methods -----------------
+
+     if(platforms[1].pos.x < 0){
+      platforms[0].moveTo(platforms[1].pos.x + platformWidth * 4, 450);
+      // i use the shift() method to extract the 0 index from the array and with push() i place it last
+      platforms.push(platforms.shift());
+    }
+
+     // each update .move() function moves the game object
+     platforms[0].move(-4000, 0);
+     platforms[1].moveTo(platforms[0].pos.x + platformWidth * 4, 450);
   })
 
 }
